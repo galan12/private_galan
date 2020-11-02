@@ -61,6 +61,8 @@ v2ray_dir=/galan/galan
 domain=$1
 http1=$2
 httph2c=$3
+api_port=$4
+proxy_port=$5
 new_uuid=b9f193c8-9849-0785-5bcd-a70d208ea1a5
 	
 
@@ -262,6 +264,8 @@ basic_optimization() {
 #------------------------------------------------------------------------------------------------
 
 
+
+
 modify_UUID() {
 	cd ${v2ray_dir}
     old_uuid=`cat config.json |grep id|awk '{print $2}'|awk -F \"  '{print $2}'`
@@ -300,6 +304,17 @@ modify_ssl() {
 	sed -i "s#${old_certificateFile}#${new_certificateFile}#" config.json
 }
 
+modify_apiport() {
+    cd ${v2ray_dir}
+	old_apiport=`cat config.json |grep port |awk '{print $2}' |awk -F , 'NR==1{print $1}'`
+	sed -i "s#${old_apiport}#${api_port}#" config.json
+}
+
+modify_proxy() {
+    cd ${v2ray_dir}
+	old_proxyport=`cat config.json |grep port |awk '{print $2}' |awk -F , 'NR==2{print $1}'`
+	sed -i "s#${old_proxyport}#${proxy_port}#" config.json
+}
 
 v2ray_install() {
     if [[ -d /galan ]]; then
@@ -470,6 +485,8 @@ v2ray_conf_update() {
     modify_nginx_port
     modify_ssl
     modify_UUID
+	modify_apiport
+	modify_proxy
 }
 v2ray_conf_add_h2() {
     cd /etc/v2ray || exit
