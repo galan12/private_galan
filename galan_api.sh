@@ -651,11 +651,12 @@ up_galan() {
 	echo -e "${OK} ${GreenBG} galan 安装成功,你可以手动输入信息到客户端，或者扫描二维码连接 ${Font}"
 	echo -e "${OK} ${GreenBG} galan 配置信息 ${Font}"
 	echo -e "${OK} ${GreenBG} 域名: ${domain} ${Font}"
-	echo -e "${OK} ${GreenBG} 连接端口: 443 ${Font}"
+	echo -e "${OK} ${GreenBG} proxy端口: ${proxy_port} ${Font}"
+	echo -e "${OK} ${GreenBG} api端口: ${api_port} ${Font}"
 	echo -e "${OK} ${GreenBG} uuid: ${new_uuid} ${Font}"
 	#二维码
 	
-	echo "${domain},443,${new_uuid}" | qrencode -o - -t UTF8
+	#echo "${domain},443,${new_uuid}" | qrencode -o - -t UTF8
 }
 
 
