@@ -752,7 +752,7 @@ install_v2ray_ws_tls() {
     dependency_install
     basic_optimization
     domain_check
-	port_exist_check_443
+    #port_exist_check_443
     #old_config_exist_check
     #port_alterid_set
     v2ray_install
