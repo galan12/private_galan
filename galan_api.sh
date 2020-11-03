@@ -269,7 +269,7 @@ basic_optimization() {
 modify_UUID() {
 	cd ${v2ray_dir}
     old_uuid=`cat config.json |grep id|awk '{print $2}'|awk -F \"  '{print $2}'`
-	new_uuid=`./v2ctl uuid`
+	new_uuid=`./util uuid`
 	sed -i "s#${old_uuid}#${new_uuid}#" config.json
 }
 modify_serverName() {
